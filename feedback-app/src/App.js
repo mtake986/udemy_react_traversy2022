@@ -1,6 +1,7 @@
 // npm install packages
 import { v4 as uuidv4} from 'uuid'
 import {useState} from 'react'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 // import other file I have created
 import Header from "./components/Header"
@@ -8,6 +9,8 @@ import FeedbackList from "./components/FeedbackList"
 import FeedbackData from './data/FeedbackData'
 import FeedbackStats from './components/FeedbackStats'
 import FeedbackForm from './components/FeedbackForm'
+import AboutPage from './pages/AboutPage'
+import AboutLinkIcon from './components/AboutLinkIcon'
 
 function App() {
   // const [feedback, setFeedback] = useState(FeedbackData)
@@ -24,14 +27,28 @@ function App() {
     }
   }
   return (
-    <>
-      <Header />
-      <div className="container">
-        <FeedbackForm handleAdd={addFeedback} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
-      </div>
-    </>
+    <Router>
+        <Header />
+        <div className="container">
+          <Routes>
+            <Route 
+              exact 
+              path='/' 
+              element={
+                <>
+                  <FeedbackForm handleAdd={addFeedback} />
+                  <FeedbackStats feedback={feedback} />
+                  <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
+                </>
+              }>
+            </Route>
+
+            <Route path='/about' element={<AboutPage />} />
+
+          </Routes>
+          <AboutLinkIcon />
+        </div>
+    </Router>
   )
 }
 export default App;
