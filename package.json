@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "framer-motion": "^4.1.17",
     "react-icons": "^4.3.1",
     "uuid": "^8.3.2"
   }
